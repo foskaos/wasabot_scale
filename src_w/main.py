@@ -1,5 +1,6 @@
 from machine import Pin,UART
 from hx711 import *
+internal_led = Pin("LED", Pin.OUT)
 import time
 # 1. initalise the hx711 with pin 10 as clock pin, pin
 # 11 as data pin
@@ -88,6 +89,7 @@ while True:
 
     reads.append(gr)
     if len(reads) == 20:
+        internal_led.toggle()
         print(val, gr)
         print()
         print('avg:', round(sum(reads)/20,1))
